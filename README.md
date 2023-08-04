@@ -8,4 +8,6 @@ Repo Link - [Github repo(https://github.com/jonasschmedtmann/ultimate-react-cour
 
 ### Course Content 
 - JS Basics - [Basics Recap](https://github.com/Ravkeerat02/Learning-React/blob/main/js-review/script.js)
+- Pizza
+  - Props & Components - [Initalizing](https://github.com/Ravkeerat02/Learning-React/blob/main/pizza/src/index.js)   
 
