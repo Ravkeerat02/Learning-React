@@ -94,6 +94,12 @@ function Menu() {
         photoName="pizzas/prosciutto.jpg"
         price={18}
       />
+      <Pizza
+        name="Pizza Margherita"
+        ingredients="Tomato and mozarella"
+        photoName="pizzas/margherita.jpg"
+        price={10}
+      />
     </main>
   );
 }
