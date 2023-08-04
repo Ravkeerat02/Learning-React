@@ -124,14 +124,19 @@ function Footer() {
   const openHour = 12;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
-  console.log(isOpen);
+
+  //applying footer styling
+  const footerStyle = {
+    color: isOpen ? "green" : "red",
+  };
 
   //   if (hour >= openHour && hour <= closeHour) alert("We are open");
   //   else alert("We are closed");
   return (
     <div>
-      <footer className="footer">
-        {new Date().toLocaleTimeString()} We are open
+      <footer className="footer" style={footerStyle}>
+        {new Date().toLocaleTimeString()}{" "}
+        {isOpen ? "We are open" : "We are closed"}
       </footer>
     </div>
   );
