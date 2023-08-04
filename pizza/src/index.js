@@ -1,7 +1,10 @@
 import React from "react";
-import "./index.css";
-import App from "./App";
 import ReactDOM from "react-dom/client";
+
+//creating component
+function App() {
+  return <h1>Pizza Menu</h1>;
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
