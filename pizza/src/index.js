@@ -46,7 +46,7 @@ const pizzaData = [
     soldOut: false,
   },
 ];
-
+// used to call out the compoquent - different displays
 function App() {
   return (
     <div className="container">
@@ -57,6 +57,7 @@ function App() {
   );
 }
 
+//displays the header component
 function Header() {
   // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
   const style = {};
@@ -68,6 +69,7 @@ function Header() {
   );
 }
 
+//displays the menu component
 function Menu() {
   const pizzas = pizzaData;
   // const pizzas = [];
@@ -78,7 +80,7 @@ function Menu() {
       <h2>Our menu</h2>
 
       {numPizzas > 0 ? (
-        // ROOT ELEMENT - comews in fragment
+        // ROOT ELEMENT - comes in fragment
         <>
           <p>
             Authentic Italian cuisine. 6 creative dishes to choose from. All
@@ -98,6 +100,7 @@ function Menu() {
   );
 }
 
+//displays the list dynamically
 function Pizza({ pizzaObj }) {
   return (
     <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
@@ -105,23 +108,20 @@ function Pizza({ pizzaObj }) {
       <div>
         <h3>{pizzaObj.name}</h3>
         <p>{pizzaObj.ingredients}</p>
+        {/* conditional rendering  */}
         <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
     </li>
   );
 }
 
+//displays the footer component
 function Footer() {
   const hour = new Date().getHours();
   const openHour = 12;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
-
-  // if (hour >= openHour && hour <= closeHour) alert("We're currently open!");
-  // else alert("Sorry we're closed");
-
-  // if (!isOpen) return <p>CLOSED</p>;
 
   return (
     <footer className="footer">
@@ -134,10 +134,9 @@ function Footer() {
       )}
     </footer>
   );
-
-  // return React.createElement("footer", null, "We're currently open!");
 }
 
+//part of footer - order btn
 function Order({ closeHour, openHour }) {
   return (
     <div className="order">
@@ -150,13 +149,9 @@ function Order({ closeHour, openHour }) {
   );
 }
 
-// React v18
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
-
-// React before 18
-// ReactDOM.render(<App />, document.getElementById("root"));
