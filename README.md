@@ -12,3 +12,4 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
 - Pizza - Small project create using fragments , components . By using jsx and some js functionalities
   - Props & Components - [Initalizing](https://github.com/Ravkeerat02/Learning-React/blob/main/pizza/src/index.js)
   - Part 1 - [Completion](https://github.com/Ravkeerat02/Learning-React/tree/main/pizza)
+  - SS - ![Pizza]()
