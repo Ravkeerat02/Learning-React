@@ -8,7 +8,11 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
 
 ### Course Content
 
-- JS Basics - [Basics Recap](https://github.com/Ravkeerat02/Learning-React/blob/main/js-review/script.js)
+- JS Basics
+  - [Basics Recap](https://github.com/Ravkeerat02/Learning-React/blob/main/js-review/script.js)
 - Pizza - Small project create using fragments , components . By using jsx and some js functionalities
   - Props & Components - [Initalizing](https://github.com/Ravkeerat02/Learning-React/blob/main/pizza/src/index.js)
   - Part 1 - [Completion](https://github.com/Ravkeerat02/Learning-React/tree/main/pizza)
+ 
+- Steps
+  - Initializer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/steps)    
