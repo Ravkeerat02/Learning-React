@@ -15,4 +15,5 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
   - Part 1 - [Completion](https://github.com/Ravkeerat02/Learning-React/tree/main/pizza)
  
 - Steps
-  - Initializer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/steps)    
+  - Initializer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/steps)
+  - Sets/Props - [Using](https://github.com/Ravkeerat02/Learning-React/blob/main/steps/src/App.js)
