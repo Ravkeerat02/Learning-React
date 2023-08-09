@@ -8,24 +8,27 @@ const messages = [
 
 export default function App() {
   //to be updated with every click - making it dynamic
+  //hook - includes a use keyword
+  //needs to be called on top of component
+
   const [step, setStep] = useState(1);
 
   // event handler function - used to handle the event
   function handlePrevios() {
-    setStep(step > 1 ? step - 1 : 1);
+    if (step > 1) setStep(step - 1);
   }
 
   function handleNext() {
-    setStep(step + 1);
+    if (step < 3) setStep(step + 1);
   }
 
   return (
     <div className="steps">
       <div className="numbers">
         {/* conditional styling - styling depending on the status */}
-        <div className={`${step >= 1 ? "active" : ""}`}>1</div>
-        <div className={`${step >= 2 ? "active" : ""}`}>2</div>
-        <div className={`${step >= 3 ? "active" : ""}`}>3</div>
+        <div className={step >= 1 ? "active" : ""}>1</div>
+        <div className={step >= 2 ? "active" : ""}>2</div>
+        <div className={step >= 3 ? "active" : ""}>3</div>
       </div>
 
       {/* displays the message based on the step  */}
