@@ -16,15 +16,16 @@ export default function App() {
 
   // event handler function - used to handle the event
   function handlePrevios() {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) setStep((s) => s - 1);
   }
 
   function handleNext() {
-    if (step < 3) setStep(step + 1);
+    if (step < 3) setStep((s) => s + 1);
   }
   return (
     <>
-      <button className="close" onClick={() => setIsOpened(!isOpened)}>
+      {/* use callback to update the state */}
+      <button className="close" onClick={() => setIsOpened((is) => !is)}>
         &times;
       </button>
       {isOpened && (
