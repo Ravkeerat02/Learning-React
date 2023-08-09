@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const messages = [
   "Learn React ⚛️",
   "Apply for jobs 💼",
@@ -5,16 +7,16 @@ const messages = [
 ];
 
 export default function App() {
-  //to be updated with every click
-  const step = 1;
+  //to be updated with every click - making it dynamic
+  const [step, setStep] = useState(1);
 
   // event handler function - used to handle the event
   function handlePrevios() {
-    alert("Previous");
+    setStep(step > 1 ? step - 1 : 1);
   }
 
   function handleNext() {
-    alert("Next");
+    setStep(step + 1);
   }
 
   return (
