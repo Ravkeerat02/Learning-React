@@ -10,10 +10,13 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
 
 - JS Basics
   - [Basics Recap](https://github.com/Ravkeerat02/Learning-React/blob/main/js-review/script.js)
-- Pizza - Small project create using fragments , components . By using jsx and some js functionalities
+- Pizza - Small project created using **fragments , components** . By using **jsx and some js** functionalities
   - Props & Components - [Initalizing](https://github.com/Ravkeerat02/Learning-React/blob/main/pizza/src/index.js)
   - Part 1 - [Completion](https://github.com/Ravkeerat02/Learning-React/tree/main/pizza)
  
-- Steps
+- Steps - Small project built using **state and porps**
   - Initializer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/steps)
   - Sets/Props - [Using](https://github.com/Ravkeerat02/Learning-React/blob/main/steps/src/App.js)
+ 
+- Travel List 
+  - Intializer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/travel-list) 
