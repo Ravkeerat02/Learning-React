@@ -20,4 +20,5 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
  
 - Travel List - Small project built using the fundamentals of using the form (react way) and handlign request(properly)
   - Intializer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/travel-list)
-  - Learning - [Form and handle submission](https://github.com/Ravkeerat02/Learning-React/blob/main/travel-list/src/index.css)
+  - Learning - [Form and handle submission](https://github.com/Ravkeerat02/Learning-React/blob/main/travel-list/src/App.js)
+  - CRUD - [Create Read Update Delete Items](https://github.com/Ravkeerat02/Learning-React/blob/main/travel-list/src/App.js)
