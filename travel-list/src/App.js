@@ -1,3 +1,5 @@
+// example of child to parent communication
+
 import { useState } from "react";
 
 const initialItems = [
