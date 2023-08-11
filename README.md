@@ -24,3 +24,4 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
   - CRUD - [Create Read Update Delete Items](https://github.com/Ravkeerat02/Learning-React/blob/main/travel-list/src/App.js)
   -  Sorting - [Sorting items](https://github.com/Ravkeerat02/Learning-React/blob/main/travel-list/src/App.js)
   -  Clean up - [Clear/reset](https://github.com/Ravkeerat02/Learning-React/blob/main/travel-list/src/App.js)
+  -  Final - [Project Completion](https://github.com/Ravkeerat02/Learning-React/tree/main/travel-list/src)
