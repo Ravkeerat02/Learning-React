@@ -51,6 +51,20 @@ export default function App() {
     setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend));
   }
 
+  function handleSplitBill(value) {
+    // new array will be based on the current array
+    //looping over array - udpating friend
+    //overwriting balance
+    setFriends((friends) =>
+      friends.map((friend) =>
+        friend.id === selectedFriend.id
+          ? { ...friend, balance: friend.balance + value }
+          : friend
+      )
+    );
+
+    setSelectedFriend(null);
+  }
   return (
     <div className="App">
       <div className="sidebar">
@@ -65,7 +79,13 @@ export default function App() {
         </Button>
       </div>
       {/* conditonal rendering */}
-      {selectedFriend && <FormSplitBill selectedFriend={selectedFriend} />}
+      {selectedFriend && (
+        <FormSplitBill
+          selectedFriend={selectedFriend}
+          onSplitBill={handleSplitBill}
+          key={selectedFriend.id}
+        />
+      )}
     </div>
   );
 }
@@ -163,8 +183,9 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    //preventing form for submission without any values
     if (!bill || !paidByUser) return;
+    //setting up the initial value
     onSplitBill(whoIsPaying === "user" ? paidByFriend : -paidByUser);
   }
 
