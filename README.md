@@ -25,3 +25,6 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
   -  Sorting - [Sorting items](https://github.com/Ravkeerat02/Learning-React/blob/main/travel-list/src/App.js)
   -  Clean up - [Clear/reset](https://github.com/Ravkeerat02/Learning-React/blob/main/travel-list/src/App.js)
   -  Final - [Project Completion](https://github.com/Ravkeerat02/Learning-React/tree/main/travel-list/src)
+ 
+- Eat-n-Split
+  - Static - [Manual Data](https://github.com/Ravkeerat02/Learning-React/blob/127afcbf0b55b8386ed294f7685d56a92f6ca556/eat-n-split/src/App.js)   
