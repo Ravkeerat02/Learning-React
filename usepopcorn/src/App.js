@@ -50,13 +50,17 @@ const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
 export default function App() {
+  // prop drilling - passing prop through nested list
+  const [movies, setMovies] = useState(tempMovieData);
+
   return (
     <>
-      <Navbar />
-      <Main />
+      <Navbar movies={movies} />
+      {/* Structural component */}
+      <Main movies={movies} />
     </>
   );
-
+  // stateful
   function Search({ query, setQuery }) {
     return (
       <input
@@ -69,16 +73,16 @@ export default function App() {
     );
   }
 
-  function Navbar() {
+  function Navbar({ movies }) {
     return (
       <nav className="nav-bar">
         <Search />
         <Logo />
-        <NumResults />
+        <NumResults movies={movies} />
       </nav>
     );
   }
-
+  // presenataion
   function Logo() {
     <div className="logo">
       <span role="img">🍿</span>
@@ -86,21 +90,24 @@ export default function App() {
     </div>;
   }
 
-  function NumResults() {
-    <p className="num-results">
-      Found <strong>X</strong> results
-    </p>;
+  function NumResults({ movies }) {
+    return (
+      <p className="num-results">
+        Found <strong>{movies.length}</strong> results
+      </p>
+    );
   }
 
-  function Main() {
+  function Main({ movies }) {
     return (
       <main className="main">
-        <ListBox />
+        <ListBox movies={movies} />
         <WatchedBox />
       </main>
     );
   }
-  function ListBox() {
+  // stateful
+  function ListBox({ movies }) {
     const [isOpen1, setIsOpen1] = useState(true);
     return (
       <div className="box">
@@ -110,15 +117,14 @@ export default function App() {
         >
           {isOpen1 ? "–" : "+"}
         </button>
-        {isOpen1 && <Movielist />}
+        {isOpen1 && <Movielist movies={movies} />}
       </div>
     );
   }
 }
 
-function Movielist() {
-  const [movies, setMovies] = useState(tempMovieData);
-
+// stateful
+function Movielist({ movies }) {
   return (
     <ul className="list">
       {movies?.map((movie) => (
@@ -128,6 +134,7 @@ function Movielist() {
   );
 }
 
+// stateless
 function Movie({ movie }) {
   return (
     <li key={movie.imdbID}>
@@ -166,7 +173,7 @@ function WatchedBox() {
     </div>
   );
 }
-
+// presentation component
 function WatchedSummary({ watched }) {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
