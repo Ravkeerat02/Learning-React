@@ -28,4 +28,7 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
  
 - Eat-n-Split - Small project which is used to add friends , calcaulate the bill and split the cost
   - Static - [Manual Data](https://github.com/Ravkeerat02/Learning-React/blob/127afcbf0b55b8386ed294f7685d56a92f6ca556/eat-n-split/src/App.js)
-  - Completion -[All features added(working](https://github.com/Ravkeerat02/Learning-React/blob/main/eat-n-split/src/App.js)   
+  - Completion -[All features added(working](https://github.com/Ravkeerat02/Learning-React/blob/main/eat-n-split/src/App.js)
+ 
+- Use Popcorn
+  - Initalizer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/usepopcorn) 
