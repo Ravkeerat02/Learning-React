@@ -46,21 +46,30 @@ const tempWatchedData = [
     userRating: 9,
   },
 ];
-const average = (arr) =>
-  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+const average = (arr) => arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
 
 export default function App() {
-  // prop drilling - passing prop through nested list
+  // State for movies list
+  // movioe(state) is being used to call out the component
   const [movies, setMovies] = useState(tempMovieData);
 
   return (
     <>
-      <Navbar movies={movies} />
-      {/* Structural component */}
-      <Main movies={movies} />
+      <Logo />
+      <NavBar>
+        <Search />
+        <NumResults movies={movies} />
+      </NavBar>
+      <Main>
+        <ListBox>
+          <MovieList movies={movies} />
+        </ListBox>
+        <WatchedBox />
+      </Main>
     </>
   );
-  // stateful
+
+  // Search Component
   function Search({ query, setQuery }) {
     return (
       <input
@@ -73,23 +82,22 @@ export default function App() {
     );
   }
 
-  function Navbar({ movies }) {
-    return (
-      <nav className="nav-bar">
-        <Search />
-        <Logo />
-        <NumResults movies={movies} />
-      </nav>
-    );
-  }
-  // presenataion
-  function Logo() {
-    <div className="logo">
-      <span role="img">🍿</span>
-      <h1>usePopcorn</h1>
-    </div>;
+  // Navbar Component
+  function NavBar({ children }) {
+    return <nav className="nav-bar">{children}</nav>;
   }
 
+  // Logo Component
+  function Logo() {
+    return (
+      <div className="logo">
+        <span role="img">🍿</span>
+        <h1>usePopcorn</h1>
+      </div>
+    );
+  }
+
+  // NumResults Component
   function NumResults({ movies }) {
     return (
       <p className="num-results">
@@ -98,17 +106,20 @@ export default function App() {
     );
   }
 
-  function Main({ movies }) {
+  // Main Component
+  function Main({ children }) {
     return (
       <main className="main">
-        <ListBox movies={movies} />
-        <WatchedBox />
+        {/* ListBox Component */}
+        {children}
       </main>
     );
   }
-  // stateful
-  function ListBox({ movies }) {
+
+  // ListBox Component
+  function ListBox({ children }) {
     const [isOpen1, setIsOpen1] = useState(true);
+
     return (
       <div className="box">
         <button
@@ -117,14 +128,14 @@ export default function App() {
         >
           {isOpen1 ? "–" : "+"}
         </button>
-        {isOpen1 && <Movielist movies={movies} />}
+        {isOpen1 && { children }}
       </div>
     );
   }
 }
 
-// stateful
-function Movielist({ movies }) {
+// Movielist Component
+function MovieList({ movies }) {
   return (
     <ul className="list">
       {movies?.map((movie) => (
@@ -134,7 +145,7 @@ function Movielist({ movies }) {
   );
 }
 
-// stateless
+// Movie Component
 function Movie({ movie }) {
   return (
     <li key={movie.imdbID}>
@@ -149,11 +160,11 @@ function Movie({ movie }) {
     </li>
   );
 }
+
+// WatchedBox Component
 function WatchedBox() {
   const [isOpen2, setIsOpen2] = useState(true);
   const [watched, setWatched] = useState(tempWatchedData);
-
-  // const avgRuntime = average(watched.map((movie) => movie.runtime));
 
   return (
     <div className="box">
@@ -165,19 +176,22 @@ function WatchedBox() {
       </button>
       {isOpen2 && (
         <>
-          {/* dont call componenrt isnide the component */}
+          {/* WatchedSummary Component */}
           <WatchedSummary watched={watched} />
+          {/* WatchedMoviesList Component */}
           <WatchedMoviesList watched={watched} />
         </>
       )}
     </div>
   );
 }
-// presentation component
+
+// WatchedSummary Component
 function WatchedSummary({ watched }) {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
   const avgRuntime = average(watched.map((movie) => movie.runtime));
+
   return (
     <div className="summary">
       <h2>Movies you watched</h2>
@@ -203,6 +217,7 @@ function WatchedSummary({ watched }) {
   );
 }
 
+// WatchedMoviesList Component
 function WatchedMoviesList({ watched }) {
   return (
     <ul className="list">
@@ -213,6 +228,7 @@ function WatchedMoviesList({ watched }) {
   );
 }
 
+// WatchedMovie Component
 function WatchedMovie({ movie }) {
   return (
     <li key={movie.imdbID}>
