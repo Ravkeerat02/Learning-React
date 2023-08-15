@@ -31,4 +31,5 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
   - Completion -[All features added(working](https://github.com/Ravkeerat02/Learning-React/blob/main/eat-n-split/src/App.js)
  
 - Use Popcorn
-  - Initalizer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/usepopcorn) 
+  - Initalizer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/usepopcorn)
+  - Refactor -[Better Presentation](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
