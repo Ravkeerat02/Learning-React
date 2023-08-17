@@ -8,7 +8,7 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
 
 ### Course Content
 
-- JS Basics
+- JS Basics - Includs topic like arrow funciton , logical operator , chaining operator , async-await function , map , filter 
   - [Basics Recap](https://github.com/Ravkeerat02/Learning-React/blob/main/js-review/script.js)
 - Pizza - Small project created using **fragments , components** . By using **jsx and some js** functionalities
   - Props & Components - [Initalizing](https://github.com/Ravkeerat02/Learning-React/blob/main/pizza/src/index.js)
