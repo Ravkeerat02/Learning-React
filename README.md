@@ -34,3 +34,4 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
   - Initalizer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/usepopcorn)
   - Refactor -[Better Presentation](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
   - Refactor - [Prop Drilling and Component Compisition](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
+  - Functionlaity Improved - [Start functionality completed](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/StarRating.js)
