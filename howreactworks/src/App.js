@@ -26,18 +26,25 @@ export default function App() {
   );
 }
 
+console.log(<DifferentContent />);
+// calling func ourselves
+console.log(DifferentContent());
+
 function Tabbed({ content }) {
+  // indicates the current tab
   const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div>
       <div className="tabs">
+        {/* used to render the resepetciive tabs */}
+        {/*  */}
         <Tab num={0} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={1} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
-
+      {/* reading out of the array as per the selected tab  */}
       {activeTab <= 2 ? (
         <TabContent item={content.at(activeTab)} />
       ) : (
@@ -47,6 +54,7 @@ function Tabbed({ content }) {
   );
 }
 
+// button - used to process(render) the resepective tab
 function Tab({ num, activeTab, onClick }) {
   return (
     <button
@@ -57,9 +65,10 @@ function Tab({ num, activeTab, onClick }) {
     </button>
   );
 }
-
+// used to render the content of the tab
 function TabContent({ item }) {
   const [showDetails, setShowDetails] = useState(true);
+  // used for reactions
   const [likes, setLikes] = useState(0);
 
   function handleInc() {
