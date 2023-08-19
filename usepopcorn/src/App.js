@@ -1,56 +1,7 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-
-// const tempMovieData = [
-//   {
-//     imdbID: "tt1375666",
-//     Title: "Inception",
-//     Year: "2010",
-//     Poster:
-//       "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-//   },
-//   {
-//     imdbID: "tt0133093",
-//     Title: "The Matrix",
-//     Year: "1999",
-//     Poster:
-//       "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
-//   },
-//   {
-//     imdbID: "tt6751668",
-//     Title: "Parasite",
-//     Year: "2019",
-//     Poster:
-//       "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
-//   },
-// ];
-
-// const tempWatchedData = [
-//   {
-//     imdbID: "tt1375666",
-//     Title: "Inception",
-//     Year: "2010",
-//     Poster:
-//       "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-//     runtime: 148,
-//     imdbRating: 8.8,
-//     userRating: 10,
-//   },
-//   {
-//     imdbID: "tt0088763",
-//     Title: "Back to the Future",
-//     Year: "1985",
-//     Poster:
-//       "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-//     runtime: 116,
-//     imdbRating: 8.5,
-//     userRating: 9,
-//   },
-// ];
+// import PropTypes from 'prop-types';
 
 const average = (arr) => arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
-
-// const KEY = "c36bc62f";
 
 export default function App() {
   // State for movies list
@@ -59,57 +10,49 @@ export default function App() {
   const [watched, setWatched] = useState([]);
 
   useEffect(function () {
-    fetch(`http://www.omdbapi.com/?apikey=c36bc62f&Fast`)
+    fetch(`http://www.omdbapi.com/?apikey=c36bc62f&s=dhoom`)
       .then((res) => res.json())
       .then((data) => setMovies(data.Search));
-  });
+  }, []);
 
   return (
     <>
       <Logo />
       <NavBar>
         <Search />
-        {/* Only render NumResults if movies array is not empty */}
-        {movies.length > 0 && <NumResults movies={movies} />}
+        <NumResults movies={movies} />
       </NavBar>
       <Main>
         <Box>
-          {/* Only render MovieList if movies array is not empty */}
-          {movies.length > 0 && <MovieList movies={movies} />}
+          <MovieList movies={movies} />
         </Box>
-        {/* <WatchedBox /> */}
+        <WatchedBox />
       </Main>
-      <Box element={<MovieList movies={movies} />}>
-        <WatchedSummary watched={watched} />
-        <WatchedMoviesList watched={watched} />
-      </Box>
     </>
   );
 
-  /*
-function WatchedBox() {
-  const [watched, setWatched] = useState(tempWatchedData);
-  const [isOpen2, setIsOpen2] = useState(true);
+  function WatchedBox() {
+    // const [watched, setWatched] = useState(tempWatchedData);
+    const [isOpen2, setIsOpen2] = useState(true);
 
-  return (
-    <div className="box">
-      <button
-        className="btn-toggle"
-        onClick={() => setIsOpen2((open) => !open)}
-      >
-        {isOpen2 ? "–" : "+"}
-      </button>
+    return (
+      <div className="box">
+        <button
+          className="btn-toggle"
+          onClick={() => setIsOpen2((open) => !open)}
+        >
+          {isOpen2 ? "–" : "+"}
+        </button>
 
-      {isOpen2 && (
-        <>
-          <WatchedSummary watched={watched} />
-          <WatchedMoviesList watched={watched} />
-        </>
-      )}
-    </div>
-  );
-}
-*/
+        {isOpen2 && (
+          <>
+            <WatchedSummary watched={watched} />
+            <WatchedMoviesList watched={watched} />
+          </>
+        )}
+      </div>
+    );
+  }
 
   // Search Component
   function Search({ query, setQuery }) {
@@ -141,13 +84,14 @@ function WatchedBox() {
 
   // NumResults Component
   function NumResults({ movies }) {
+    const numResults = movies ? movies.length : 0;
+
     return (
       <p className="num-results">
-        Found <strong>{movies.length}</strong> results
+        Found <strong>{numResults}</strong> results
       </p>
     );
   }
-
   // Main Component
   function Main({ children }) {
     return (
@@ -175,6 +119,7 @@ function WatchedBox() {
     );
   }
 }
+
 // Movielist Component
 function MovieList({ movies }) {
   return (
