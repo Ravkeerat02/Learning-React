@@ -35,3 +35,4 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
   - Refactor -[Better Presentation](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
   - Refactor - [Prop Drilling and Component Compisition](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
   - Functionlaity Improved - [Start functionality completed](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/StarRating.js)
+  - Data Fetch - [Fetching and Displaying](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
