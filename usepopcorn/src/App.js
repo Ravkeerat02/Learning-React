@@ -9,17 +9,21 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const query = "fast";
+  const [isLoading, setIsLoading] = useState(false);
 
   // async function - returns a promise
   // effect will run twice - only in developermtn - to check if there is any error
 
   useEffect(function () {
     async function fetchMovies() {
+      // loading is happening
+      setIsLoading(true);
       const res = await fetch(
         `http://www.omdbapi.com/?apikey=c36bc62f&s=${query}`
       );
       const data = await res.json();
       setMovies(data.Search);
+      setIsLoading(false);
     }
     fetchMovies();
   }, []);
@@ -32,13 +36,18 @@ export default function App() {
         <NumResults movies={movies} />
       </NavBar>
       <Main>
+        <Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box>
         <Box>
-          <MovieList movies={movies} />
+          <WatchedSummary watched={watched} />
+          <WatchedMoviesList watched={watched} />
         </Box>
-        <WatchedBox />
       </Main>
     </>
   );
+
+  function Loader() {
+    return <div className="loader">Loading...</div>;
+  }
 
   function WatchedBox() {
     // const [watched, setWatched] = useState(tempWatchedData);
