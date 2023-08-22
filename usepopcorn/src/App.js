@@ -8,11 +8,20 @@ export default function App() {
   // movioe(state) is being used to call out the component
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const query = "fast";
+
+  // async function - returns a promise
+  // effect will run twice - only in developermtn - to check if there is any error
 
   useEffect(function () {
-    fetch(`http://www.omdbapi.com/?apikey=c36bc62f&s=dhoom`)
-      .then((res) => res.json())
-      .then((data) => setMovies(data.Search));
+    async function fetchMovies() {
+      const res = await fetch(
+        `http://www.omdbapi.com/?apikey=c36bc62f&s=${query}`
+      );
+      const data = await res.json();
+      setMovies(data.Search);
+    }
+    fetchMovies();
   }, []);
 
   return (
