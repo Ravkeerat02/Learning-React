@@ -37,3 +37,4 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
   - Functionlaity Improved - [Start functionality completed](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/StarRating.js)
   - Data Fetch - [Fetching and Displaying](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
   - Waiting - [Loader](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
+  -  Better Display - [Detailed Information](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
