@@ -8,35 +8,67 @@ export default function App() {
   // movioe(state) is being used to call out the component
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
-  const query = "fast";
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [query, setQuery] = useState("");
+  const tempQuery = "fast";
 
+  // effect only run after loading
   // async function - returns a promise
   // effect will run twice - only in developermtn - to check if there is any error
 
-  useEffect(function () {
+  useEffect(() => {
     async function fetchMovies() {
-      // loading is happening
-      setIsLoading(true);
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=c36bc62f&s=${query}`
-      );
-      const data = await res.json();
-      setMovies(data.Search);
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        // reset the error
+        setError("");
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=c36bc62f&s=${query}`
+        );
+        // handling
+        if (!res.ok) {
+          throw new Error("Whoops. It didn't go as planned");
+        }
+
+        const data = await res.json();
+        if (data.response === "False")
+          throw new Error("Whoops. It didn't go as planned");
+        setMovies(data.Search);
+        setIsLoading(false);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
     }
+    // resulting an empty array
+    if (!query.length) {
+      setMovies([]);
+      setError("");
+      return;
+    }
+
     fetchMovies();
-  }, []);
+  }, [query]);
 
   return (
     <>
       <Logo />
       <NavBar>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </NavBar>
       <Main>
-        <Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box>
+        {/* Condition rENDERING - display movie list if there is no error */}
+        <Box>
+          {/* {isLoading ? <Loader /> : <MovieList movies={movies} />} */}
+          {/* either its loading - if not there is an eror */}
+          {isLoading && <Loader />}
+          {!isLoading && !error && <MovieList movies={movies} />}
+          {error && <ErrorMessage message={error} />}
+        </Box>
         <Box>
           <WatchedSummary watched={watched} />
           <WatchedMoviesList watched={watched} />
@@ -49,27 +81,10 @@ export default function App() {
     return <div className="loader">Loading...</div>;
   }
 
-  function WatchedBox() {
-    // const [watched, setWatched] = useState(tempWatchedData);
-    const [isOpen2, setIsOpen2] = useState(true);
+  // error component
 
-    return (
-      <div className="box">
-        <button
-          className="btn-toggle"
-          onClick={() => setIsOpen2((open) => !open)}
-        >
-          {isOpen2 ? "–" : "+"}
-        </button>
-
-        {isOpen2 && (
-          <>
-            <WatchedSummary watched={watched} />
-            <WatchedMoviesList watched={watched} />
-          </>
-        )}
-      </div>
-    );
+  function ErrorMessage({ message }) {
+    return <p className="error">❌</p>;
   }
 
   // Search Component
