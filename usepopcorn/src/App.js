@@ -200,6 +200,15 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     (movie) => movie.imdbID === selectedId
   )?.userRating;
 
+  // to update page title - works when component is mounted - wont reexecute
+  useEffect(
+    function () {
+      if (!title) return;
+      document.title = `Movie | ${movie.title}`;
+    },
+    [title]
+  );
+
   // Destructure object properties from the movie state
   const {
     Title: title,
