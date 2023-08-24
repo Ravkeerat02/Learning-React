@@ -31,6 +31,15 @@ export default function App() {
     setSelectedId(null);
   }
 
+  // adding item to the array - watched movie - creating new movie object
+  function handleAddWatched(movie) {
+    setWatched((watched) => [...watched, movie]);
+  }
+
+  function handleDeleteWatched(id) {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+  }
+
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -90,11 +99,16 @@ export default function App() {
             <MovieDetails
               selectedId={selectedId}
               onCloseMovie={handleCloseMovie}
+              onAddWatched={handleAddWatched}
+              watched={watched}
             />
           ) : (
             <>
               <WatchedSummary watched={watched} />
-              <WatchedMoviesList watched={watched} />
+              <WatchedMoviesList
+                watched={watched}
+                onDeleteWatched={handleDeleteWatched}
+              />
             </>
           )}
         </Box>
@@ -175,10 +189,16 @@ export default function App() {
   }
 }
 // Information displayed for selected ID
-function MovieDetails({ selectedId, onCloseMovie }) {
+function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   // State to hold movie details and loading status
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [userRating, setUserRating] = useState("");
+  // transorforming into arrayof ibj
+  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
+  const watchUserRating = watched.find(
+    (movie) => movie.imdbID === selectedId
+  )?.userRating;
 
   // Destructure object properties from the movie state
   const {
@@ -208,6 +228,22 @@ function MovieDetails({ selectedId, onCloseMovie }) {
     getMovieDetails();
   }, [selectedId]);
 
+  function handleAdd() {
+    const newWatchedMovie = {
+      imdbID: selectedId,
+      title,
+      year,
+      poster,
+      // easy to calculate stas
+      imdbRating: Number(imdbRating),
+      // display just part of it
+      runtime: runtime.split(" ")[0],
+      userRating,
+    };
+    onAddWatched(newWatchedMovie);
+    onCloseMovie();
+  }
+
   return (
     <div className="details">
       {isLoading ? (
@@ -228,13 +264,29 @@ function MovieDetails({ selectedId, onCloseMovie }) {
               <p>
                 <span>⭐️</span>
                 {imdbRating} IMDb Rating
+                <p />
                 {year} Year
               </p>
             </div>
           </header>
           <section>
             <div className="rating">
-              <StarRating maxRating={10} size={24} />
+              {!isWatched ? (
+                <>
+                  <StarRating
+                    maxRating={10}
+                    size={24}
+                    onSetRating={setUserRating}
+                  />
+                  {userRating > 0 && (
+                    <button className="btn-add" onClick={handleAdd}>
+                      Add to list
+                    </button>
+                  )}
+                </>
+              ) : (
+                <p>You rated this movie{watchUserRating}</p>
+              )}
             </div>
             <p>
               <em>{plot}</em>
@@ -276,10 +328,29 @@ function Movie({ movie, onSelectMovie }) {
 }
 
 // WatchedSummary Component
+// calculation need to be fixed - should display the right time(total) when adding all the movies together
 function WatchedSummary({ watched }) {
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
+  // Calculate total runtime in minutes
+  const totalRuntime = watched.reduce(
+    (total, movie) => total + movie.runtime,
+    0
+  );
+
+  // Convert total runtime to hours and minutes
+  const hours = Math.floor(totalRuntime / 60);
+  const minutes = totalRuntime % 60;
+
+  // Format the runtime string
+  let runtimeString = "";
+  if (hours > 0) {
+    runtimeString += `${hours} hr`;
+    if (minutes > 0) {
+      runtimeString += " ";
+    }
+  }
+  if (minutes > 0) {
+    runtimeString += `${minutes} min`;
+  }
 
   return (
     <div className="summary">
@@ -291,15 +362,19 @@ function WatchedSummary({ watched }) {
         </p>
         <p>
           <span>⭐️</span>
-          <span>{avgImdbRating}</span>
+          <span>
+            {average(watched.map((movie) => movie.imdbRating)).toFixed(2)}
+          </span>
         </p>
         <p>
           <span>🌟</span>
-          <span>{avgUserRating}</span>
+          <span>
+            {average(watched.map((movie) => movie.userRating)).toFixed(2)}
+          </span>
         </p>
         <p>
           <span>⏳</span>
-          <span>{avgRuntime} min</span>
+          <span>{runtimeString || "0 min"}</span>
         </p>
       </div>
     </div>
@@ -307,22 +382,26 @@ function WatchedSummary({ watched }) {
 }
 
 // WatchedMoviesList Component
-function WatchedMoviesList({ watched }) {
+function WatchedMoviesList({ watched, onDeleteWatched }) {
   return (
     <ul className="list">
       {watched.map((movie) => (
-        <WatchedMovie movie={movie} key={movie.imdbID} />
+        <WatchedMovie
+          movie={movie}
+          key={movie.imdbID}
+          onDeleteWatched={onDeleteWatched}
+        />
       ))}
     </ul>
   );
 }
 
 // WatchedMovie Component
-function WatchedMovie({ movie }) {
+function WatchedMovie({ movie, onDeleteWatched }) {
   return (
     <li key={movie.imdbID}>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
+      <img src={movie.poster} alt={`${movie.title} poster`} />
+      <h3>{movie.title}</h3>
       <div>
         <p>
           <span>⭐️</span>
@@ -336,6 +415,12 @@ function WatchedMovie({ movie }) {
           <span>⏳</span>
           <span>{movie.runtime} min</span>
         </p>
+        <button
+          className="btn-delete"
+          onClick={() => onDeleteWatched(movie.imdbID)}
+        >
+          X
+        </button>
       </div>
     </li>
   );
