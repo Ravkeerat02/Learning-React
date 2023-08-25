@@ -3,6 +3,7 @@ import StarRating from "./StarRating";
 // import PropTypes from 'prop-types';
 
 const average = (arr) => arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
+const KEY = "c36bc62f";
 
 // keep outside main component - for better usage
 function Loader() {
@@ -50,7 +51,7 @@ export default function App() {
           // reset the error
           setError("");
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=c36bc62f&s=${query}`,
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
             { signal: controller.signal }
           );
           // handling
