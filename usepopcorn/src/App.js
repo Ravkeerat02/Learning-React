@@ -40,41 +40,54 @@ export default function App() {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
-  useEffect(() => {
-    async function fetchMovies() {
-      try {
-        setIsLoading(true);
-        // reset the error
-        setError("");
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=c36bc62f&s=${query}`
-        );
-        // handling
-        if (!res.ok) {
-          throw new Error("Whoops. It didn't go as planned");
+  useEffect(
+    function () {
+      const controller = new AbortController();
+
+      async function fetchMovies() {
+        try {
+          setIsLoading(true);
+          // reset the error
+          setError("");
+          const res = await fetch(
+            `http://www.omdbapi.com/?apikey=c36bc62f&s=${query}`,
+            { signal: controller.signal }
+          );
+          // handling
+          if (!res.ok) {
+            throw new Error("Something went wrong with fetching movies");
+          }
+
+          const data = await res.json();
+          if (data.response === "False")
+            throw new Error("Movie not found. Please try again.");
+          setMovies(data.Search);
+          setError("");
+          // setIsLoading(false);
+        } catch (err) {
+          if (err.name !== "AbortError") {
+            console.log(err.message);
+            setError(err.message);
+          }
+        } finally {
+          setIsLoading(false);
         }
-
-        const data = await res.json();
-        if (data.response === "False")
-          throw new Error("Whoops. It didn't go as planned");
-        setMovies(data.Search);
-        setIsLoading(false);
-      } catch (err) {
-        console.error(err);
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
       }
-    }
-    // resulting an empty array
-    if (!query.length) {
-      setMovies([]);
-      setError("");
-      return;
-    }
+      // resulting an empty array
+      if (!query.length) {
+        setMovies([]);
+        setError("");
+        return;
+      }
+      handleCloseMovie();
+      fetchMovies();
 
-    fetchMovies();
-  }, [query]);
+      return function () {
+        controller.abort();
+      };
+    },
+    [query]
+  );
 
   return (
     <>
@@ -200,15 +213,6 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     (movie) => movie.imdbID === selectedId
   )?.userRating;
 
-  // to update page title - works when component is mounted - wont reexecute
-  useEffect(
-    function () {
-      if (!title) return;
-      document.title = `Movie | ${movie.title}`;
-    },
-    [title]
-  );
-
   // Destructure object properties from the movie state
   const {
     Title: title,
@@ -222,20 +226,6 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     Director: director,
     Genre: genre,
   } = movie;
-
-  // Effect to fetch movie details when selectedId changes
-  useEffect(() => {
-    async function getMovieDetails() {
-      setIsLoading(true);
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=c36bc62f&i=${selectedId}`
-      );
-      const data = await res.json();
-      setMovie(data);
-      setIsLoading(false);
-    }
-    getMovieDetails();
-  }, [selectedId]);
 
   function handleAdd() {
     const newWatchedMovie = {
@@ -252,6 +242,47 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     onAddWatched(newWatchedMovie);
     onCloseMovie();
   }
+
+  // Effect to fetch movie details when selectedId changes
+  useEffect(() => {
+    async function getMovieDetails() {
+      setIsLoading(true);
+      const res = await fetch(
+        `http://www.omdbapi.com/?apikey=c36bc62f&i=${selectedId}`
+      );
+      const data = await res.json();
+      setMovie(data);
+      setIsLoading(false);
+    }
+    getMovieDetails();
+  }, [selectedId]);
+
+  // dom manipulation
+  useEffect(function () {
+    function callback(e) {
+      if (e.key === "Escape") {
+        onCloseMovie();
+      }
+    }
+    document.addEventListener("keydown", callback);
+
+    return function () {
+      document.removeEventListener("keydown", callback);
+    }[onCloseMovie];
+  });
+
+  // to update page title - works when component is mounted - wont reexecute
+  useEffect(
+    function () {
+      if (!title) return;
+      document.title = `Movie | ${title}`;
+
+      return function () {
+        document.title = "usePopcorn";
+      };
+    },
+    [title]
+  );
 
   return (
     <div className="details">
@@ -408,7 +439,7 @@ function WatchedMoviesList({ watched, onDeleteWatched }) {
 // WatchedMovie Component
 function WatchedMovie({ movie, onDeleteWatched }) {
   return (
-    <li key={movie.imdbID}>
+    <li>
       <img src={movie.poster} alt={`${movie.title} poster`} />
       <h3>{movie.title}</h3>
       <div>
