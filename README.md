@@ -30,11 +30,11 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
   - Static - [Manual Data](https://github.com/Ravkeerat02/Learning-React/blob/127afcbf0b55b8386ed294f7685d56a92f6ca556/eat-n-split/src/App.js)
   - Completion -[All features added(working](https://github.com/Ravkeerat02/Learning-React/blob/main/eat-n-split/src/App.js)
  
-- Use Popcorn
+- Use Popcorn - project built using useffect , api - to generate list of movies along with some relvant information
   - Initalizer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/usepopcorn)
   - Refactor -[Better Presentation](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
   - Refactor - [Prop Drilling and Component Compisition](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
   - Functionlaity Improved - [Start functionality completed](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/StarRating.js)
   - Data Fetch - [Fetching and Displaying](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
   - Waiting - [Loader](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
-  -  Better Display - [Detailed Information](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
+  - Better Display - [Detailed Information](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
