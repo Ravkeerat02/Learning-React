@@ -31,10 +31,11 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
   - Completion -[All features added(working](https://github.com/Ravkeerat02/Learning-React/blob/main/eat-n-split/src/App.js)
  
 - Use Popcorn - project built using useffect , api - to generate list of movies along with some relvant information
-  - Initalizer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/usepopcorn)
-  - Refactor -[Better Presentation](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
-  - Refactor - [Prop Drilling and Component Compisition](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
-  - Functionlaity Improved - [Start functionality completed](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/StarRating.js)
-  - Data Fetch - [Fetching and Displaying](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
-  - Waiting - [Loader](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
-  - Better Display - [Detailed Information](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
+  - Deployed - [UsePopcorn](https://movie-app-portfolio.netlify.app/)   
+    - Initalizer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/usepopcorn)
+    - Refactor -[Better Presentation](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
+    - Refactor - [Prop Drilling and Component Compisition](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
+    - Functionlaity Improved - [Start functionality completed](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/StarRating.js)
+    - Data Fetch - [Fetching and Displaying](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
+    - Waiting - [Loader](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
+    - Better Display - [Detailed Information](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
