@@ -368,30 +368,10 @@ function Movie({ movie, onSelectMovie }) {
   );
 }
 
-// WatchedSummary Component
-// calculation need to be fixed - should display the right time(total) when adding all the movies together
 function WatchedSummary({ watched }) {
-  // Calculate total runtime in minutes
-  const totalRuntime = watched.reduce(
-    (total, movie) => total + movie.runtime,
-    0
-  );
-
-  // Convert total runtime to hours and minutes
-  const hours = Math.floor(totalRuntime / 60);
-  const minutes = totalRuntime % 60;
-
-  // Format the runtime string
-  let runtimeString = "";
-  if (hours > 0) {
-    runtimeString += `${hours} hr`;
-    if (minutes > 0) {
-      runtimeString += " ";
-    }
-  }
-  if (minutes > 0) {
-    runtimeString += `${minutes} min`;
-  }
+  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
+  const avgUserRating = average(watched.map((movie) => movie.userRating));
+  const avgRuntime = average(watched.map((movie) => movie.runtime));
 
   return (
     <div className="summary">
@@ -403,19 +383,11 @@ function WatchedSummary({ watched }) {
         </p>
         <p>
           <span>⭐️</span>
-          <span>
-            {average(watched.map((movie) => movie.imdbRating)).toFixed(2)}
-          </span>
+          <span>{avgImdbRating.toFixed(2)}</span>
         </p>
         <p>
           <span>🌟</span>
-          <span>
-            {average(watched.map((movie) => movie.userRating)).toFixed(2)}
-          </span>
-        </p>
-        <p>
-          <span>⏳</span>
-          <span>{runtimeString || "0 min"}</span>
+          <span>{avgUserRating.toFixed(2)}</span>
         </p>
       </div>
     </div>
