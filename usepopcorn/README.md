@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-Deployed link - [UsePopcorn](https://learning-react-tau.vercel.app/)
+Deployed link - [UsePopcorn]([https://learning-react-tau.vercel.app/](https://movie-app-portfolio.netlify.app/))
 
 ## Available Scripts
 
