@@ -32,7 +32,7 @@ Repo Link - [Github repo](https://github.com/jonasschmedtmann/ultimate-react-cou
   - Completion -[All features added(working](https://github.com/Ravkeerat02/Learning-React/blob/main/eat-n-split/src/App.js)
  
 - Use Popcorn - project built using useffect , api - to generate list of movies along with some relvant information
-  - Deployed - [UsePopcorn](https://movie-app-portfolio.netlify.app/)   
+  - Deployed - [UsePopcorn](https://learning-react-tau.vercel.app/)   
     - Initalizer - [Setup](https://github.com/Ravkeerat02/Learning-React/tree/main/usepopcorn)
     - Refactor -[Better Presentation](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
     - Refactor - [Prop Drilling and Component Compisition](https://github.com/Ravkeerat02/Learning-React/blob/main/usepopcorn/src/App.js)
