@@ -338,3 +338,50 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+@media (max-width: 768px) {
+  body {
+    padding: 1.6rem; /* Reduce body padding for smaller screens */
+  }
+
+  .nav-bar {
+    grid-template-columns: 1fr; /* Change to single column layout */
+    align-items: center;
+    justify-items: center;
+    gap: 1rem; /* Add gap between elements */
+    padding: 1.6rem; /* Reduce padding for smaller screens */
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .main {
+    flex-direction: column; /* Change to single column layout */
+    align-items: center;
+    gap: 1.6rem; /* Add gap between elements */
+    margin-top: 1.6rem; /* Reduce margin for smaller screens */
+  }
+
+  .box {
+    width: 100%; /* Adjust box width to full width */
+    border-radius: 0.9rem;
+    overflow: scroll;
+    position: relative;
+  }
+
+  .list-movies {
+    display: flex;
+    flex-direction: column; /* Change to single column layout */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .list-movies li {
+    width: 100%; /* Adjust width to full width */
+    margin-bottom: 1.6rem; /* Add margin between items */
+  }
+
+  /* ... (other adjustments) ... */
+}
